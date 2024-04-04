@@ -32,7 +32,8 @@
 					<td>${list.name}</td>
 					<td><c:forEach var="list1" items="${list.skills}"
 							varStatus="loop">
-							${list1},
+							${list1}
+							<c:if test="${not loop.last}">,</c:if>  <!-- To add comma between the skills -->
 						</c:forEach></td>
 					<td>${list.dateOfBirth}</td>
 					<td><a href="getEmployeeById/${list.id}"><button>Update</button></a>
