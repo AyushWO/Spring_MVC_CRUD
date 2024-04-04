@@ -46,33 +46,26 @@
 	</button>
 </body>
 <script>
-    function validateForm() {
-        var name = document.forms["registrationForm"]["name"].value;
-        var dob = document.forms["registrationForm"]["dateOfBirth"].value;
-        var isValid = true;
+function validateForm() {
+    var name = document.forms["registrationForm"]["name"].value;
+    var dob = document.forms["registrationForm"]["dateOfBirth"].value;
+    var isValid = true;
 
-        if (name == "" || name == null) {
-            document.getElementById("nameError").innerHTML = "Please Enter Your Name";
-            isValid = false;
-        } else {
-            document.getElementById("nameError").innerHTML = "";
-        }
-        
-        if (name != null) {
-            if (name.match(/[0-9]/)) {
-                document.getElementById("nameError").innerHTML = "Please enter Your Name in letters only";       
-                isValid = false;
-            } else {
-                document.getElementById("nameError").innerHTML = "";
-            }
-        }
-
-        if (dob == "" || dob == null) {
-            document.getElementById("dobError").innerHTML = "Please Enter Your Date Of Birth";
-            isValid = false;
-        } else {
-            document.getElementById("dobError").innerHTML = "";
-        }
+    if (name === "" || name === null) {
+        document.getElementById("nameError").innerHTML = "Please Enter Your Name";
+        isValid = false;
+    } else if (name.match(/[0-9]/)) {
+        document.getElementById("nameError").innerHTML = "Please enter Your Name in letters only";       
+        isValid = false;
+    } else {
+        document.getElementById("nameError").innerHTML = "";
+    }
+    
+    if (dob === "" || dob === null) {
+        document.getElementById("dobError").innerHTML = "Please Enter Your Date Of Birth";
+        isValid = false;
+    } else {
+        document.getElementById("dobError").innerHTML = "";
         
         var age = getAge(dob);  //getting function getAge(dob) from the below function code
         if (age < 18 || age > 66) {
@@ -81,20 +74,22 @@
         } else {
             document.getElementById("dobError").innerHTML = "";
         }
-
-        return isValid;
     }
 
-    function getAge(dob) {
-        var today = new Date();
-        var birthDate = new Date(dob);
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        return age;
+    return isValid;
+}
+
+function getAge(dob) {
+    var today = new Date();
+    var birthDate = new Date(dob);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
     }
+    return age;
+}
+
 </script>
 
 </html>
